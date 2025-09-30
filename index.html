@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Perfil Profissional Jadison Ribeiro</title>
-     <!-- Favicon com ícone de trabalho -->
+    <!-- Favicon com ícone de trabalho -->
     <link rel="icon" href="imagens/trabalho.png" type="image/png">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #117f95;
             --primary-dark: #0c4461;
+            --primary-light: #4da8b8;
             --secondary: #ffffff;
             --background: linear-gradient(135deg, #0d1b2a, #20365d);
-            --card: rgba(255, 255, 255, 0.05);
+            --card: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.12);
             --text: #f1f1f1;
+            --text-light: rgba(241, 241, 241, 0.8);
             --transition: all 0.3s ease;
             --linkedin: #0a66c2;
+            --whatsapp: #25D366;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            --radius: 24px;
         }
 
         * {
@@ -36,140 +40,363 @@
             justify-content: center;
             align-items: center;
             padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Efeitos de fundo premium */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(17, 127, 149, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(17, 127, 149, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
 
         .panel {
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             background: var(--card);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--card-border);
             width: 100%;
-            max-width: 850px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-            padding: 3rem 2rem;
+            max-width: 950px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem 2.5rem;
             text-align: center;
             animation: fadeIn 1.2s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Elemento decorativo */
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(17, 127, 149, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .profile-container {
+            position: relative;
+            margin-bottom: 2rem;
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             border: 4px solid var(--primary);
             object-fit: cover;
             margin-bottom: 1.5rem;
-            box-shadow: 0 0 30px rgba(0,180,216,0.5);
-            transition: transform 0.4s ease;
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-img:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 180, 216, 0.7);
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: 20px;
+            right: calc(50% - 100px);
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(50%);
         }
 
         h1 {
-            font-size: 2.7rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary);
         }
 
         p {
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            opacity: 0.9;
-            line-height: 1.6;
+            max-width: 750px;
+            margin: 0 auto 2.5rem auto;
+            color: var(--text-light);
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.9rem 2rem;
-            margin: 0.5rem;
+            gap: 0.6rem;
+            padding: 1rem 2.2rem;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 600;
+            font-size: 1.05rem;
             text-decoration: none;
             transition: var(--transition);
             cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
             background: var(--primary);
             color: white;
-            box-shadow: 0 5px 15px rgba(0,180,216,0.5);
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.5);
         }
 
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,180,216,0.7);
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.7);
         }
 
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
+        .btn-whatsapp {
+            background: var(--whatsapp);
             color: white;
-            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
         }
 
-        /* Botão LinkedIn personalizado */
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
+        }
+
         .btn-linkedin {
             background: var(--linkedin);
             color: white;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.05rem;
             border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            margin-top: 1rem;
+            gap: 0.7rem;
+            padding: 1rem 2.2rem;
             box-shadow: 0 6px 18px rgba(10, 102, 194, 0.5);
             transition: var(--transition);
+            text-decoration: none;
         }
 
         .btn-linkedin:hover {
             background: #0653a0;
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(22, 63, 104, 0.7);
+            box-shadow: 0 8px 24px rgba(10, 102, 194, 0.7);
+        }
+
+        .social-container {
+            margin-top: 2rem;
         }
 
         footer {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             font-size: 0.9rem;
             opacity: 0.6;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+            
+            .panel {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .profile-img {
+                width: 170px;
+                height: 170px;
+            }
+            
+            .btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+            
+            .btn-container {
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .panel {
+                padding: 2rem 1.2rem;
+                border-radius: 18px;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.7rem;
+            }
+            
+            .btn-linkedin {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .panel {
+                padding: 1.8rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .tagline {
+                font-size: 0.95rem;
+            }
+            
+            p {
+                font-size: 0.95rem;
+            }
+            
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="panel">
-        <img src="imagens/jadison.jpg" alt="Foto Jadison" class="profile-img">
-        <h1>Jadison Silva Ribeiro</h1>
-        <p>Minha grande paixão é proteger vidas e promover ambientes seguros. Possuo sólida experiência em resposta a emergências, liderança de equipes em situações críticas e aplicação de tecnologia para otimização de processos. Também atuo com análise estratégica de dados, apoiando decisões assertivas e fundamentadas. Meu trabalho combina expertise técnica, visão estratégica e dedicação, garantindo equipes preparadas, processos eficientes e operações mais seguras.</p>
-        <div>
-            <a href="portifolio.html" class="btn btn-primary"><i class="fas fa-briefcase"></i> Ver Portfólio</a>
-            <a href="https://wa.me/5591998361022?text=Olá%20Jadison,%20vi%20seu%20portfólio%20e%20tenho%20uma%20oportunidade%20profissional%20que%20gostaria%20de%20discutir%20com%20você." target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i>Whatsapp</a>
+        <div class="profile-container">
+            <img src="imagens/jadison.jpg" alt="Foto Jadison" class="profile-img">
         </div>
-        <div>
+        
+        <h1>Jadison Silva Ribeiro</h1>
+        <div class="tagline">Protegendo Vidas, Otimizando Processos</div>
+        
+        <p>Minha grande paixão é proteger vidas e promover ambientes seguros. Possuo sólida experiência em resposta a emergências, liderança de equipes em situações críticas e aplicação de tecnologia para otimização de processos. Também atuo com análise estratégica de dados, apoiando decisões assertivas e fundamentadas. Meu trabalho combina expertise técnica, visão estratégica e dedicação, garantindo equipes preparadas, processos eficientes e operações mais seguras.</p>
+        
+        <div class="btn-container">
+            <a href="portifolio.html" class="btn btn-primary"><i class="fas fa-briefcase"></i> Ver Portfólio</a>
+            <a href="https://wa.me/5591998361022?text=Olá%20Jadison,%20vi%20seu%20portfólio%20e%20tenho%20uma%20oportunidade%20profissional%20que%20gostaria%20de%20discutir%20com%20você." target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i>Whatsapp</a>
+        </div>
+        
+        <div class="social-container">
             <a href="https://www.linkedin.com/in/jadison-silva-ribeiro/" target="_blank" class="btn-linkedin">
-                <i class="fab fa-linkedin"></i>  Linkedin
+                <i class="fab fa-linkedin"></i> Linkedin
             </a>
         </div>
+        
         <footer>© 2025 - Jadison Ribeiro | Todos os direitos reservados</footer>
     </div>
 </body>
