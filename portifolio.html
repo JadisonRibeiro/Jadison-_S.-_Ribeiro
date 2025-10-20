@@ -31,6 +31,7 @@
     html, body {
       height: 100%;
       scroll-behavior: smooth;
+      background: linear-gradient(135deg, var(--bg), #0d1429);
     }
 
     body {
@@ -41,6 +42,7 @@
       font-family: 'Inter', 'Segoe UI', system-ui, Roboto, Helvetica, Arial, sans-serif;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
 
     /* Animated background */
@@ -52,6 +54,7 @@
       height: 100%;
       z-index: -2;
       overflow: hidden;
+      background: linear-gradient(135deg, var(--bg), #0d1429);
     }
 
     .bg-circle {
@@ -110,7 +113,14 @@
     .card {
       background: var(--card);
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(var(--glass-blur));
+      /* Fallback para navegadores que não suportam backdrop-filter */
+      background: rgba(10, 15, 29, 0.7);
+      /* Aplica o efeito glass apenas em navegadores que suportam */
+      @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        background: var(--card);
+      }
       border-radius: var(--radius);
       padding: 32px;
       box-shadow: var(--shadow);
@@ -583,6 +593,14 @@
       border: 1px solid rgba(255,255,255,0.05);
       overflow: hidden;
       background: var(--card);
+      /* Fallback para navegadores que não suportam backdrop-filter */
+      background: rgba(10, 15, 29, 0.7);
+      /* Aplica o efeito glass apenas em navegadores que suportam */
+      @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        background: var(--card);
+      }
       display: flex;
       flex-direction: column;
       transition: all 0.4s ease;
